@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HIST_NG_PATH="/home/cipherboy/GitHub/cipherboy/hist-ng/hist-ng.py"
+HIST_NG_PROJ="global"
 
 function hist_ng_save() {
     local last_hist="$HISTFILE"
@@ -10,13 +11,17 @@ function hist_ng_save() {
     export HISTFILE="$temp_hist"
     history -w
     last_command="$(tail -n 1 "$temp_hist")"
-    python3 "$HIST_NG_PATH" save "$last_command"
+    python3 "$HIST_NG_PATH" save "$last_command" "$HIST_NG_PROJ"
 
     rm -rf $temp_hist
     export HISTFILE="$last_hist"
     history -a
     history -c
     history -r
+}
+
+function hist_ng_context() {
+    export HIST_NG_PROJ="$1"
 }
 
 export PROMPT_COMMAND="hist_ng_save; $PROMPT_COMMAND"
