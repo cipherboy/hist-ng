@@ -1,5 +1,5 @@
 # ---> hist-ng
-hist-ng.db
+*.db
 
 # ---> Vim
 [._]*.s[a-w][a-z]
