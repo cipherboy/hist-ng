@@ -1,0 +1,11 @@
+{
+    "database": "~/.hist_ng/history.db",
+    "sessions_dir": "~/.hist_ng/sessions",
+    "projects": {
+        "default": {
+            "hist_file": "~/.bash_history",
+            "projects_exclude": [],
+            "commands_exclude": ["ls", "dir"]
+        }
+    }
+}
