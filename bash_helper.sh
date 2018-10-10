@@ -1,7 +1,9 @@
 #!/bin/bash
 
-HIST_NG_PATH="/home/cipherboy/GitHub/cipherboy/hist-ng/hist-ng.py"
-HIST_NG_PROJ="global"
+HIST_NG_PATH="/home/cipherboy/GitHub/cipherboy/hist-ng/hist_ng.py"
+
+export HIST_NG_PROJECT="global"
+export HIST_NG_SESSION="$(pwd)-$$-$RANDOM-$RANDOM-$RANDOM"
 
 function hist_ng_save() {
     local last_hist="$HISTFILE"
@@ -11,11 +13,10 @@ function hist_ng_save() {
     export HISTFILE="$temp_hist"
     history -w
     last_command="$(tail -n 1 "$temp_hist")"
-    python3 "$HIST_NG_PATH" save "$last_command" "$HIST_NG_PROJ"
+    python3 "$HIST_NG_PATH" cmd "$last_command"
 
     rm -rf $temp_hist
-    export HISTFILE="$last_hist"
-    history -a
+    export HISTFILE="$(python3 "$HIST_NG_PATH" session)"
     history -c
     history -r
 }
