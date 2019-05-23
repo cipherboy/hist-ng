@@ -1,11 +1,26 @@
 {
     "database": "~/.hist_ng/history.db",
     "sessions_dir": "~/.hist_ng/sessions",
-    "projects": {
-        "default": {
+    "projects": [
+        {
+            "name": "default",
             "hist_file": "~/.bash_history",
-            "projects_exclude": [],
-            "commands_exclude": ["ls", "dir"]
+            "projects": {
+                "include": "*"
+            },
+            "commands": {
+                "exclude": ["ls", "dir"]
+            }
+        },
+        {
+            "name": "hist-ng",
+            "hist_file": "~/GitHub/cipherboy/hist-ng/.git/bash_history",
+            "projects": {
+                "include": ["~/GitHub/cipherboy/hist-ng"]
+            },
+            "commands": {
+                "exclude": ["ls", "ls -alh", "dir"]
+            }
         }
-    }
+    ]
 }
