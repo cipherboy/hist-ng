@@ -367,7 +367,6 @@ def parse_config(config_fp):
     if not isinstance(config['sessions_dir'], str):
         raise ValueError("Global key sessions_dir not of type str in " +
                          "configuration: " + config_path)
-    os.makedirs(config['sessions_dir'], exist_ok=True)
 
     # Validate "projects" config value
     if "projects" not in config:
@@ -390,6 +389,7 @@ def parse_config(config_fp):
 
     config['database'] = os.path.expanduser(config['database'])
     config['sessions_dir'] = os.path.expanduser(config['sessions_dir'])
+    os.makedirs(config['sessions_dir'], exist_ok=True)
 
     return config
 
